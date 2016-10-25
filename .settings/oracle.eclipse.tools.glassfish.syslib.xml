@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<system-libraries>
+    <library path="E:/JP INDRA_ARQUIVOS E SOFTWARES/DES/glassfish4/glassfish/modules/javax.el.jar" source="/crudAplicacao/WebContent/WEB-INF/lib"/>
+</system-libraries>

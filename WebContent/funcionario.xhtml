@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<h:form>
+		<!-- posso colocar uma id para o form e colocar o update=":frm" -->
+		<p:toolbar>
+			<p:toolbarGroup align="right">
+				<p:commandButton value="Adicionar" action="#{FuncionarioBean.add()}"
+					update="@form"></p:commandButton>
+				<p:commandButton value="Listar" action="#{FuncionarioBean.listar()}"
+					update="@form"></p:commandButton>
+			</p:toolbarGroup>
+		</p:toolbar>
+		<p:fieldset legend="Funcionários">
+			<p:panelGrid columns="2">
+
+				<h:outputLabel value="Nome"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.nome}"></p:inputText>
+
+				<h:outputLabel value="CPF"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.cpf}"></p:inputText>
+
+				<h:outputLabel value="Nascimento"></h:outputLabel>
+				<p:calendar value="#{FuncionarioBean.funcionario.nascimento}"></p:calendar>
+
+				<h:outputLabel value="Departamento"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.depto}"></p:inputText>
+
+				<h:outputLabel value="Contratacao"></h:outputLabel>
+				<p:calendar value="#{FuncionarioBean.funcionario.contratacao}"></p:calendar>
+
+				<h:outputLabel value="Cargo"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.cargo}"></p:inputText>
+
+				<h:outputLabel value="Salário"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.salario}"></p:inputText>
+
+				<h:outputLabel value="Supervisor"></h:outputLabel>
+				<p:inputText value="#{FuncionarioBean.funcionario.imediato}"></p:inputText>
+
+			</p:panelGrid>
+			<p:dataTable value="#{FuncionarioBean.funcionario}" var="funcionario">
+				<p:column>
+					<p:commandButton value="Editar"
+						action="#{FuncionarioBean.editar(funcionario)}"></p:commandButton>
+				</p:column>
+				<p:column headerText="Nome" sortBy="#{funcionario.nome}">
+					<h:outputText value="#{funcionario.nome}" />
+				</p:column>
+				<p:column headerText="CPF" sortBy="#{funcionario.cpf}">
+					<h:outputText value="#{funcionario.cpf}" />
+				</p:column>
+				<p:column headerText="Nascimento" sortBy="#{funcionario.nascimento}">
+					<h:outputText value="#{funcionario.nascimento}">
+						<f:convertDateTime patter="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Departamento" sortBy="#{funcionario.depto}">
+					<h:outputText value="#{funcionario.depto}" />
+				</p:column>
+				<p:column headerText="Contratação"
+					sortBy="#{funcionario.contratacao}">
+					<h:outputText value="#{funcionario.contratacao}">
+						<f:convertDateTime patter="dd/MM/yyyy"></f:convertDateTime>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Cargo" sortBy="#{funcionario.cargo}">
+					<h:outputText value="#{funcionario.cargo}" />
+				</p:column>
+				<p:column headerText="Salário" sortBy="#{funcionario.salario}">
+					<h:outputText value="#{funcionario.salario}" />
+				</p:column>
+				<p:column headerText="Supervisor" sortBy="#{funcionario.imediato}">
+					<h:outputText value="#{funcionario.imediato}" />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</ui:decorate>

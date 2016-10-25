@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="template.xhtml">
+
+	<h:form>
+		<!-- posso colocar uma id para o form e colocar o update=":frm" -->
+		<p:toolbar>
+			<p:toolbarGroup align="right">
+				<p:commandButton value="Adicionar"
+					action="#{DepartamentoBean.add()}" update="@form"></p:commandButton>
+				<p:commandButton value="Listar"
+					action="#{DepartamentoBean.listar()}" update="@form"></p:commandButton>
+			</p:toolbarGroup>
+		</p:toolbar>
+		<p:fieldset legend="Departamentos">
+			<p:panelGrid columns="2">
+
+				<h:outputLabel value="Função"></h:outputLabel>
+				<p:inputText value="#{DepartamentoBean.departamento.depto_desc}"></p:inputText>
+
+				<h:outputLabel value="Ramal"></h:outputLabel>
+				<p:inputText mask="9999"
+					value="#{DepartamentoBean.departamento.ramal}"></p:inputText>
+
+			</p:panelGrid>
+			<p:dataTable value="#{DepartamentoBean.departamento}"
+				var="departamento">
+				<p:column>
+					<p:commandButton value="Editar"
+						action="#{DepartamentoBean.editar(departamento)}"></p:commandButton>
+				</p:column>
+				<p:column headerText="Função" sortBy="#{departamento.depto_desc}">
+					<h:outputText value="#{departamento.depto_desc}" />
+				</p:column>
+				<p:column headerText="Ramal" sortBy="#{departamento.ramal}">
+					<h:outputText value="#{departamento.ramal}" />
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</ui:decorate>
